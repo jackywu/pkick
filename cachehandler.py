@@ -1,8 +1,15 @@
 import json
+import os
 
 class CacheHandler(object):
+    @staticmethod
+    def ensure_dir(path):
+        dir_name = os.path.dirname(path)
+        os.makedirs(dir_name)
+        
     @classmethod
     def write(cls, path, content):
+        cls.ensure_dir(path)
         with open(path, 'w') as fp:
             fp.write(content)
     
