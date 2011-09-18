@@ -1,5 +1,5 @@
 from termcolor import colored
-from utils import print_header, print_box, print_seprate_line, print_node_box
+from utils import print_seprate_line, print_node_box
 import re
 
 class Colorize(object):

@@ -1,0 +1,48 @@
+Pkick
+=====
+Pkick is a open source tool for kicking puppet client from the master.
+
+Pkick is licensed under the GPL license.
+
+Author
+======
+Jacky Wu <jacky.wucheng@gmail.com>
+
+Installation
+============
+Just copy and run. Pkick is compatiable with Python 2 and Python 3.
+
+Hierarchy
+==========
+*.py
+    python code
+var/
+    cache directory
+
+
+Usage
+=====
+Show help info:
+    # python -h
+
+List all puppet clients:
+    # python pkick -d
+
+Pkick will cache the nodes on local file in var/node_cache, if you add/remove 
+puppet client machine in your network, you should update the nodes cache:
+    # python pkick -u
+
+List puppet clients filtered by regex pattern:
+    # python pkick -d -p "your regex pattern"
+    
+Kick all puppet clients:
+    # python pkick
+    
+Kick puppet clients filtered by regex pattern:
+    # python pkick -p "your regex pattern"
+    
+Show nodes who were kicked successfully:
+    # python pkick -s
+    
+show nodes who were kicked failed:
+    # python pkick -f
