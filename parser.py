@@ -6,6 +6,8 @@ class Parser(object):
         Result list of Result_Q
         Args:
             result: list, [host, stdout, stderr]
+        Return:
+            return a list: [host, stdout, stderr, status]
         """
         stderr = result[2]
         cp_result = copy.deepcopy(result)

@@ -5,7 +5,8 @@ class CacheHandler(object):
     @staticmethod
     def ensure_dir(path):
         dir_name = os.path.dirname(path)
-        os.makedirs(dir_name)
+        if not os.path.exists(dir_name):
+            os.makedirs(dir_name)
         
     @classmethod
     def write(cls, path, content):

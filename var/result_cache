@@ -1,0 +1,1 @@
+[["node2.cluster.com", "Triggering node2.cluster.com\nGetting status\nstatus is success\nnode2.cluster.com finished with exit code 0\nFinished\n", "", true], ["node3.cluster.com", "node3.cluster.com finished with exit code 0\nFinished\n", "Could not contact node3.cluster.com\n", false]]

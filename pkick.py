@@ -7,11 +7,12 @@ from cachehandler import CacheHandler
 from colorize import Colorize
 from optparse import OptionParser
 from parser import Parser
-from utils import print_box, print_header, print_node_box, print_pre_node_box, \
-    print_errmsg
+from utils import print_header, print_node_box, print_pre_node_box, print_errmsg
+import copy
 import json
 import os
 import re
+import socket
 import subprocess
 import threadpool
 
@@ -87,7 +88,14 @@ class Pkick(object):
         tidy_node_list = self.get_node_list_from_puppet()
         CacheHandler.serialize(NODE_CACHE, tidy_node_list)
         return tidy_node_list
-                
+     
+    def filter_self(self, nodes):
+        self_node_name = socket.gethostname()
+        cp_nodes = copy.deepcopy(nodes)
+        if self_node_name in cp_nodes:
+            cp_nodes.remove(self_node_name)
+        return cp_nodes
+            
     def filter_node(self, filter_str):
         all_node = self.get_all_node()
         if (not filter_str) or (not filter_str.strip()):
@@ -95,6 +103,8 @@ class Pkick(object):
         else:
             filtered_node = [node for node in all_node if re.search(filter_str, node)]
 
+        filtered_node = self.filter_self(filtered_node)
+        
         return filtered_node
 
     def kick(self, hosts):

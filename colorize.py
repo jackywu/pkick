@@ -46,7 +46,7 @@ class Colorize(object):
     def colorize_succ(self, input):
         output = colored(input, 'magenta')
         return output
-
+      
     def colorize_output(self, result_q, node_list):
         """colorize the puppet kick result text
         Args:

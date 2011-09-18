@@ -1,38 +1,42 @@
-from prettytable import PrettyTable
-
-#import prettytable
+from texttable import Texttable
 
 BOX_WIDTH = 150
 
 def fill(title):
     return "%s%s" % (title, " "*(BOX_WIDTH-len(title)))
 
-def print_header():
-    print "\n",
-    title = fill("This puppet kick tool(Pkick) has super power!")
-    table = PrettyTable([title])
-    table.add_row(["Please wait ..."])
-    print(table)
-    print "\n",
-
 def print_box(title, rows):
     """
     Args:
         title: the title column
-        rows: list, each element is a row
+        rows: list, each element is a string
     """
     title = fill(title)
-    table = PrettyTable([title])
+    
+    table = Texttable()
+    table.set_cols_align(["l"])
+    table.set_cols_valign(["m"])
+    
+    table.add_row([title])
+#    table.add_row(["\n".join(rows)])
     for row in rows:
-        table.add_row([row,])
-    print(table)
+        table.add_row([row])
+    print(table.draw())
+    
+
+def print_header():
+    title = "This puppet kick tool(Pkick) has super power!"
+    row = "Please wait ..."
+    print_box(title, [row])
+    print_seprate_line()
+    
     
 def print_node_box(node_list):
-    print_box("The node to be kicked:", node_list)
+    print_box("The nodes to be kicked:", node_list)
     
 def print_seprate_line():
-    content = "v" + "="*160 + "v"
-    print content
+    content = "\nv" + "="*160 + "v\n"
+    print(content)
 
 def print_pre_node_box(succ, node_list):
     if succ:
